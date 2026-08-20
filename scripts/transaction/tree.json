@@ -1,46 +1,15 @@
 {
-  "baseline": {
-    "document": {
-      "store": {}
-    }
-  },
-  "events": [
-    {
-      "t": 0,
-      "diff": {
-        "added": {
-          "shape:tree_trunk_001": {
-            "id": "shape:tree_trunk_001",
-            "typeName": "shape",
-            "type": "geo",
-            "x": 480,
-            "y": 420,
-            "rot": 0,
-            "z": 1,
-            "props": {
-              "geo": "rectangle",
-              "w": 1,
-              "h": 1,
-              "color": "orange",
-              "size": "m",
-              "dash": "solid",
-              "fill": "solid",
-              "font": "draw"
-            }
-          }
-        },
-        "removed": {},
-        "updated": {}
+    "baseline": {
+      "document": {
+        "store": {}
       }
     },
-    {
-      "t": 200,
-      "diff": {
-        "added": {},
-        "removed": {},
-        "updated": {
-          "shape:tree_trunk_001": [
-            {
+    "events": [
+      {
+        "t": 0,
+        "diff": {
+          "added": {
+            "shape:tree_trunk_001": {
               "id": "shape:tree_trunk_001",
               "typeName": "shape",
               "type": "geo",
@@ -58,64 +27,66 @@
                 "fill": "solid",
                 "font": "draw"
               }
-            },
-            {
-              "id": "shape:tree_trunk_001",
-              "typeName": "shape",
-              "type": "geo",
-              "x": 470,
-              "y": 300,
-              "rot": 0,
-              "z": 1,
-              "props": {
-                "geo": "rectangle",
-                "w": 40,
-                "h": 160,
-                "color": "orange",
-                "size": "m",
-                "dash": "solid",
-                "fill": "solid",
-                "font": "draw"
-              }
             }
-          ]
+          },
+          "removed": {},
+          "updated": {}
         }
-      }
-    },
-    {
-      "t": 500,
-      "diff": {
-        "added": {
-          "shape:tree_branch_left_001": {
-            "id": "shape:tree_branch_left_001",
-            "typeName": "shape",
-            "type": "line",
-            "x": 490,
-            "y": 340,
-            "rot": 0,
-            "z": 2,
-            "props": {
-              "dx": 0.01,
-              "dy": 0.01,
-              "bend": 0,
-              "color": "orange",
-              "size": "m",
-              "dash": "solid"
-            }
+      },
+      {
+        "t": 200,
+        "diff": {
+          "added": {},
+          "removed": {},
+          "updated": {
+            "shape:tree_trunk_001": [
+              {
+                "id": "shape:tree_trunk_001",
+                "typeName": "shape",
+                "type": "geo",
+                "x": 480,
+                "y": 420,
+                "rot": 0,
+                "z": 1,
+                "props": {
+                  "geo": "rectangle",
+                  "w": 1,
+                  "h": 1,
+                  "color": "orange",
+                  "size": "m",
+                  "dash": "solid",
+                  "fill": "solid",
+                  "font": "draw"
+                }
+              },
+              {
+                "id": "shape:tree_trunk_001",
+                "typeName": "shape",
+                "type": "geo",
+                "x": 470,
+                "y": 300,
+                "rot": 0,
+                "z": 1,
+                "props": {
+                  "geo": "rectangle",
+                  "w": 40,
+                  "h": 160,
+                  "color": "orange",
+                  "size": "m",
+                  "dash": "solid",
+                  "fill": "solid",
+                  "font": "draw"
+                }
+              }
+            ]
           }
-        },
-        "removed": {},
-        "updated": {}
-      }
-    },
-    {
-      "t": 700,
-      "diff": {
-        "added": {},
-        "removed": {},
-        "updated": {
-          "shape:tree_branch_left_001": [
-            {
+        }
+      },
+      {
+        "t": 500,
+        "diff": {
+          "added": {
+            "shape:tree_branch_left_001": {
               "id": "shape:tree_branch_left_001",
               "typeName": "shape",
               "type": "line",
@@ -131,62 +102,62 @@
                 "size": "m",
                 "dash": "solid"
               }
-            },
-            {
-              "id": "shape:tree_branch_left_001",
-              "typeName": "shape",
-              "type": "line",
-              "x": 490,
-              "y": 340,
-              "rot": 0,
-              "z": 2,
-              "props": {
-                "dx": -90,
-                "dy": -70,
-                "bend": 20,
-                "color": "orange",
-                "size": "m",
-                "dash": "solid"
-              }
             }
-          ]
+          },
+          "removed": {},
+          "updated": {}
         }
-      }
-    },
-    {
-      "t": 900,
-      "diff": {
-        "added": {
-          "shape:tree_branch_right_001": {
-            "id": "shape:tree_branch_right_001",
-            "typeName": "shape",
-            "type": "line",
-            "x": 510,
-            "y": 340,
-            "rot": 0,
-            "z": 2,
-            "props": {
-              "dx": 0.01,
-              "dy": 0.01,
-              "bend": 0,
-              "color": "orange",
-              "size": "m",
-              "dash": "solid"
-            }
+      },
+      {
+        "t": 700,
+        "diff": {
+          "added": {},
+          "removed": {},
+          "updated": {
+            "shape:tree_branch_left_001": [
+              {
+                "id": "shape:tree_branch_left_001",
+                "typeName": "shape",
+                "type": "line",
+                "x": 490,
+                "y": 340,
+                "rot": 0,
+                "z": 2,
+                "props": {
+                  "dx": 0.01,
+                  "dy": 0.01,
+                  "bend": 0,
+                  "color": "orange",
+                  "size": "m",
+                  "dash": "solid"
+                }
+              },
+              {
+                "id": "shape:tree_branch_left_001",
+                "typeName": "shape",
+                "type": "line",
+                "x": 490,
+                "y": 340,
+                "rot": 0,
+                "z": 2,
+                "props": {
+                  "dx": -90,
+                  "dy": -70,
+                  "bend": 20,
+                  "color": "orange",
+                  "size": "m",
+                  "dash": "solid"
+                }
+              }
+            ]
           }
-        },
-        "removed": {},
-        "updated": {}
-      }
-    },
-    {
-      "t": 1100,
-      "diff": {
-        "added": {},
-        "removed": {},
-        "updated": {
-          "shape:tree_branch_right_001": [
-            {
+        }
+      },
+      {
+        "t": 900,
+        "diff": {
+          "added": {
+            "shape:tree_branch_right_001": {
               "id": "shape:tree_branch_right_001",
               "typeName": "shape",
               "type": "line",
@@ -202,64 +173,62 @@
                 "size": "m",
                 "dash": "solid"
               }
-            },
-            {
-              "id": "shape:tree_branch_right_001",
-              "typeName": "shape",
-              "type": "line",
-              "x": 510,
-              "y": 340,
-              "rot": 0,
-              "z": 2,
-              "props": {
-                "dx": 90,
-                "dy": -70,
-                "bend": -20,
-                "color": "orange",
-                "size": "m",
-                "dash": "solid"
-              }
             }
-          ]
+          },
+          "removed": {},
+          "updated": {}
         }
-      }
-    },
-    {
-      "t": 1300,
-      "diff": {
-        "added": {
-          "shape:tree_crown_left": {
-            "id": "shape:tree_crown_left",
-            "typeName": "shape",
-            "type": "geo",
-            "x": 360,
-            "y": 200,
-            "rot": 0,
-            "z": 3,
-            "props": {
-              "geo": "ellipse",
-              "w": 1,
-              "h": 1,
-              "color": "green",
-              "size": "m",
-              "dash": "solid",
-              "fill": "solid",
-              "font": "draw"
-            }
+      },
+      {
+        "t": 1100,
+        "diff": {
+          "added": {},
+          "removed": {},
+          "updated": {
+            "shape:tree_branch_right_001": [
+              {
+                "id": "shape:tree_branch_right_001",
+                "typeName": "shape",
+                "type": "line",
+                "x": 510,
+                "y": 340,
+                "rot": 0,
+                "z": 2,
+                "props": {
+                  "dx": 0.01,
+                  "dy": 0.01,
+                  "bend": 0,
+                  "color": "orange",
+                  "size": "m",
+                  "dash": "solid"
+                }
+              },
+              {
+                "id": "shape:tree_branch_right_001",
+                "typeName": "shape",
+                "type": "line",
+                "x": 510,
+                "y": 340,
+                "rot": 0,
+                "z": 2,
+                "props": {
+                  "dx": 90,
+                  "dy": -70,
+                  "bend": -20,
+                  "color": "orange",
+                  "size": "m",
+                  "dash": "solid"
+                }
+              }
+            ]
           }
-        },
-        "removed": {},
-        "updated": {}
-      }
-    },
-    {
-      "t": 1500,
-      "diff": {
-        "added": {},
-        "removed": {},
-        "updated": {
-          "shape:tree_crown_left": [
-            {
+        }
+      },
+      {
+        "t": 1300,
+        "diff": {
+          "added": {
+            "shape:tree_crown_left": {
               "id": "shape:tree_crown_left",
               "typeName": "shape",
               "type": "geo",
@@ -277,66 +246,66 @@
                 "fill": "solid",
                 "font": "draw"
               }
-            },
-            {
-              "id": "shape:tree_crown_left",
-              "typeName": "shape",
-              "type": "geo",
-              "x": 360,
-              "y": 200,
-              "rot": 0,
-              "z": 3,
-              "props": {
-                "geo": "ellipse",
-                "w": 140,
-                "h": 120,
-                "color": "green",
-                "size": "m",
-                "dash": "solid",
-                "fill": "solid",
-                "font": "draw"
-              }
             }
-          ]
+          },
+          "removed": {},
+          "updated": {}
         }
-      }
-    },
-    {
-      "t": 1700,
-      "diff": {
-        "added": {
-          "shape:tree_crown_center": {
-            "id": "shape:tree_crown_center",
-            "typeName": "shape",
-            "type": "geo",
-            "x": 430,
-            "y": 160,
-            "rot": 0,
-            "z": 4,
-            "props": {
-              "geo": "ellipse",
-              "w": 1,
-              "h": 1,
-              "color": "light-green",
-              "size": "m",
-              "dash": "solid",
-              "fill": "solid",
-              "font": "draw"
-            }
+      },
+      {
+        "t": 1500,
+        "diff": {
+          "added": {},
+          "removed": {},
+          "updated": {
+            "shape:tree_crown_left": [
+              {
+                "id": "shape:tree_crown_left",
+                "typeName": "shape",
+                "type": "geo",
+                "x": 360,
+                "y": 200,
+                "rot": 0,
+                "z": 3,
+                "props": {
+                  "geo": "ellipse",
+                  "w": 1,
+                  "h": 1,
+                  "color": "green",
+                  "size": "m",
+                  "dash": "solid",
+                  "fill": "solid",
+                  "font": "draw"
+                }
+              },
+              {
+                "id": "shape:tree_crown_left",
+                "typeName": "shape",
+                "type": "geo",
+                "x": 360,
+                "y": 200,
+                "rot": 0,
+                "z": 3,
+                "props": {
+                  "geo": "ellipse",
+                  "w": 140,
+                  "h": 120,
+                  "color": "green",
+                  "size": "m",
+                  "dash": "solid",
+                  "fill": "solid",
+                  "font": "draw"
+                }
+              }
+            ]
           }
-        },
-        "removed": {},
-        "updated": {}
-      }
-    },
-    {
-      "t": 1900,
-      "diff": {
-        "added": {},
-        "removed": {},
-        "updated": {
-          "shape:tree_crown_center": [
-            {
+        }
+      },
+      {
+        "t": 1700,
+        "diff": {
+          "added": {
+            "shape:tree_crown_center": {
               "id": "shape:tree_crown_center",
               "typeName": "shape",
               "type": "geo",
@@ -354,66 +323,66 @@
                 "fill": "solid",
                 "font": "draw"
               }
-            },
-            {
-              "id": "shape:tree_crown_center",
-              "typeName": "shape",
-              "type": "geo",
-              "x": 430,
-              "y": 160,
-              "rot": 0,
-              "z": 4,
-              "props": {
-                "geo": "ellipse",
-                "w": 160,
-                "h": 140,
-                "color": "light-green",
-                "size": "m",
-                "dash": "solid",
-                "fill": "solid",
-                "font": "draw"
-              }
             }
-          ]
+          },
+          "removed": {},
+          "updated": {}
         }
-      }
-    },
-    {
-      "t": 2100,
-      "diff": {
-        "added": {
-          "shape:tree_crown_right": {
-            "id": "shape:tree_crown_right",
-            "typeName": "shape",
-            "type": "geo",
-            "x": 520,
-            "y": 200,
-            "rot": 0,
-            "z": 3,
-            "props": {
-              "geo": "ellipse",
-              "w": 1,
-              "h": 1,
-              "color": "green",
-              "size": "m",
-              "dash": "solid",
-              "fill": "solid",
-              "font": "draw"
-            }
+      },
+      {
+        "t": 1900,
+        "diff": {
+          "added": {},
+          "removed": {},
+          "updated": {
+            "shape:tree_crown_center": [
+              {
+                "id": "shape:tree_crown_center",
+                "typeName": "shape",
+                "type": "geo",
+                "x": 430,
+                "y": 160,
+                "rot": 0,
+                "z": 4,
+                "props": {
+                  "geo": "ellipse",
+                  "w": 1,
+                  "h": 1,
+                  "color": "light-green",
+                  "size": "m",
+                  "dash": "solid",
+                  "fill": "solid",
+                  "font": "draw"
+                }
+              },
+              {
+                "id": "shape:tree_crown_center",
+                "typeName": "shape",
+                "type": "geo",
+                "x": 430,
+                "y": 160,
+                "rot": 0,
+                "z": 4,
+                "props": {
+                  "geo": "ellipse",
+                  "w": 160,
+                  "h": 140,
+                  "color": "light-green",
+                  "size": "m",
+                  "dash": "solid",
+                  "fill": "solid",
+                  "font": "draw"
+                }
+              }
+            ]
           }
-        },
-        "removed": {},
-        "updated": {}
-      }
-    },
-    {
-      "t": 2300,
-      "diff": {
-        "added": {},
-        "removed": {},
-        "updated": {
-          "shape:tree_crown_right": [
-            {
+        }
+      },
+      {
+        "t": 2100,
+        "diff": {
+          "added": {
+            "shape:tree_crown_right": {
               "id": "shape:tree_crown_right",
               "typeName": "shape",
               "type": "geo",
@@ -431,29 +400,60 @@
                 "fill": "solid",
                 "font": "draw"
               }
-            },
-            {
-              "id": "shape:tree_crown_right",
-              "typeName": "shape",
-              "type": "geo",
-              "x": 520,
-              "y": 200,
-              "rot": 0,
-              "z": 3,
-              "props": {
-                "geo": "ellipse",
-                "w": 140,
-                "h": 120,
-                "color": "green",
-                "size": "m",
-                "dash": "solid",
-                "fill": "solid",
-                "font": "draw"
-              }
             }
-          ]
+          },
+          "removed": {},
+          "updated": {}
+        }
+      },
+      {
+        "t": 2300,
+        "diff": {
+          "added": {},
+          "removed": {},
+          "updated": {
+            "shape:tree_crown_right": [
+              {
+                "id": "shape:tree_crown_right",
+                "typeName": "shape",
+                "type": "geo",
+                "x": 520,
+                "y": 200,
+                "rot": 0,
+                "z": 3,
+                "props": {
+                  "geo": "ellipse",
+                  "w": 1,
+                  "h": 1,
+                  "color": "green",
+                  "size": "m",
+                  "dash": "solid",
+                  "fill": "solid",
+                  "font": "draw"
+                }
+              },
+              {
+                "id": "shape:tree_crown_right",
+                "typeName": "shape",
+                "type": "geo",
+                "x": 520,
+                "y": 200,
+                "rot": 0,
+                "z": 3,
+                "props": {
+                  "geo": "ellipse",
+                  "w": 140,
+                  "h": 120,
+                  "color": "green",
+                  "size": "m",
+                  "dash": "solid",
+                  "fill": "solid",
+                  "font": "draw"
+                }
+              }
+            ]
+          }
         }
       }
-    }
-  ]
-}
+    ]
+  }

@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Quickdraw, useQuickdrawStore } from '@quickdrawjs/react'
+import { compileLesson, isLessonDsl } from '@quickdrawjs/lesson-compiler'
+import { generateLesson } from './generateLesson.js'
 import '@quickdrawjs/core/quickdraw.css'
 
 const STORAGE_KEY = 'quickdraw-react-demo'
@@ -42,13 +44,24 @@ const normalizeDiff = (diff) => ({
   updated: diff?.updated && typeof diff.updated === 'object' && !Array.isArray(diff.updated) ? diff.updated : {},
 })
 
-/** Accept full tape, { events }, or a bare events array. */
+/** Accept lesson DSL, full tape, { events }, or a bare events array. */
 const parseImportPayload = (raw) => {
   let data
   try {
     data = typeof raw === 'string' ? JSON.parse(raw) : raw
   } catch (e) {
     throw new Error('Invalid JSON: ' + e.message)
+  }
+
+  if (isLessonDsl(data)) {
+    const tape = compileLesson(data)
+    if (!tape.events.length) throw new Error('Lesson compiled to zero events')
+    return {
+      baseline: structuredClone(tape.baseline),
+      events: tape.events.map((ev) => ({ t: ev.t, diff: normalizeDiff(ev.diff) })),
+      source: 'lesson',
+      scene: tape.scene,
+    }
   }
 
   let baseline = EMPTY_SNAPSHOT
@@ -63,7 +76,7 @@ const parseImportPayload = (raw) => {
         baseline = data.baseline
       }
     } else {
-      throw new Error('Expected { baseline?, events } or an array of { t, diff }')
+      throw new Error('Expected lesson DSL { actions }, tape { baseline?, events }, or [{ t, diff }]')
     }
   } else {
     throw new Error('Expected a JSON object or array')
@@ -79,7 +92,7 @@ const parseImportPayload = (raw) => {
     return { t, diff: normalizeDiff(ev.diff) }
   })
 
-  return { baseline: structuredClone(baseline), events }
+  return { baseline: structuredClone(baseline), events, source: 'tape' }
 }
 
 const summarizeDiff = (diff) => {
@@ -126,6 +139,10 @@ export default function App() {
   const [importError, setImportError] = useState('')
   const [importOk, setImportOk] = useState('')
   const [showImport, setShowImport] = useState(false)
+  const [showGenerate, setShowGenerate] = useState(false)
+  const [genPrompt, setGenPrompt] = useState('draw a tree')
+  const [genBusy, setGenBusy] = useState(false)
+  const [genError, setGenError] = useState('')
   const boardRef = useRef(null)
   const fileInputRef = useRef(null)
   const store = useQuickdrawStore(load())
@@ -284,7 +301,7 @@ export default function App() {
   }
 
   const loadImported = (payload, { play = false } = {}) => {
-    const { baseline: snap, events: evs } = payload
+    const { baseline: snap, events: evs, source, scene } = payload
     baselineRef.current = snap
     eventsRef.current = evs
     setBaseline(snap)
@@ -292,7 +309,8 @@ export default function App() {
     setSelected(null)
     persistRecording(snap, evs)
     setImportError('')
-    setImportOk(`Loaded ${evs.length} transaction${evs.length === 1 ? '' : 's'}`)
+    const kind = source === 'lesson' ? `lesson${scene ? ` "${scene}"` : ''}` : 'tape'
+    setImportOk(`Loaded ${evs.length} transaction${evs.length === 1 ? '' : 's'} from ${kind}`)
     if (play) playRecordingWith(snap, evs)
   }
 
@@ -338,6 +356,26 @@ export default function App() {
     } catch {
       setImportOk('Tape shown below — copy manually')
       setImportError('')
+    }
+  }
+
+  const runGenerateAndPlay = async () => {
+    const prompt = genPrompt.trim()
+    if (!prompt || genBusy || mode === 'recording' || mode === 'playing') return
+    setGenBusy(true)
+    setGenError('')
+    try {
+      const lesson = await generateLesson(prompt)
+      const dslText = JSON.stringify(lesson, null, 2)
+      setImportText(dslText)
+      setShowImport(true)
+      const payload = parseImportPayload(lesson)
+      loadImported(payload, { play: true })
+      setShowGenerate(false)
+    } catch (e) {
+      setGenError(e.message || String(e))
+    } finally {
+      setGenBusy(false)
     }
   }
 
@@ -430,8 +468,9 @@ export default function App() {
             }}
           >
             <div style={{ font: '11px system-ui', opacity: 0.7 }}>
-              Paste a full tape <code>{'{ baseline, events }'}</code>, or just an{' '}
-              <code>{'[{ t, diff }, …]'}</code> array.
+              Paste a <strong>lesson DSL</strong> (<code>{'{ actions }'}</code>), a full tape{' '}
+              <code>{'{ baseline, events }'}</code>, or <code>{'[{ t, diff }, …]'}</code>.
+              DSL is compiled automatically.
             </div>
             <textarea
               value={importText}
@@ -620,6 +659,19 @@ export default function App() {
           </span>
           <button
             type="button"
+            onClick={() => { setShowGenerate(true); setGenError('') }}
+            disabled={mode === 'recording' || mode === 'playing' || genBusy}
+            style={{
+              ...btnStyle,
+              background: '#e8eef9',
+              cursor: (mode === 'recording' || mode === 'playing' || genBusy) ? 'not-allowed' : 'pointer',
+              opacity: (mode === 'recording' || mode === 'playing' || genBusy) ? 0.5 : 1,
+            }}
+          >
+            Generate
+          </button>
+          <button
+            type="button"
             onClick={() => (mode === 'recording' ? stopRecording() : startRecording())}
             disabled={mode === 'playing'}
             style={{
@@ -653,6 +705,82 @@ export default function App() {
             {theme === 'light' ? 'dark' : 'light'}
           </button>
         </div>
+
+        {showGenerate && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Generate lesson from prompt"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 60,
+              background: 'rgba(0,0,0,0.35)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 16,
+            }}
+            onClick={() => { if (!genBusy) setShowGenerate(false) }}
+          >
+            <div
+              style={{
+                width: 'min(480px, 100%)',
+                background: '#fff',
+                borderRadius: 12,
+                padding: 20,
+                boxShadow: '0 12px 40px rgba(0,0,0,0.2)',
+                fontFamily: 'system-ui, sans-serif',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 12,
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div style={{ font: '600 16px system-ui' }}>Generate lesson</div>
+              <div style={{ font: '13px system-ui', opacity: 0.7 }}>
+                Describe what to draw. The LLM returns Educational DSL; we compile and play it.
+              </div>
+              <textarea
+                value={genPrompt}
+                onChange={(e) => setGenPrompt(e.target.value)}
+                disabled={genBusy}
+                placeholder="draw a tree"
+                rows={4}
+                style={{
+                  width: '100%',
+                  resize: 'vertical',
+                  font: '14px system-ui',
+                  padding: 10,
+                  borderRadius: 8,
+                  border: '1px solid rgba(0,0,0,0.18)',
+                  boxSizing: 'border-box',
+                }}
+              />
+              {genError && (
+                <div style={{ font: '12px system-ui', color: '#b91c1c' }}>{genError}</div>
+              )}
+              <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+                <button
+                  type="button"
+                  style={smallBtn}
+                  disabled={genBusy}
+                  onClick={() => setShowGenerate(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  style={{ ...smallBtn, background: '#e8eef9' }}
+                  disabled={genBusy || !genPrompt.trim()}
+                  onClick={runGenerateAndPlay}
+                >
+                  {genBusy ? 'Generating…' : 'Generate & Play'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

@@ -6,4 +6,6 @@ coverage/
 packages/react-native/src/board-html.generated.js
 .vercel/
 .astro/
+.env
 .env.local
+.env.*.local

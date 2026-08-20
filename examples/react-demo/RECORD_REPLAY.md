@@ -2,6 +2,8 @@
 
 This demo feature lives in [`App.jsx`](./src/App.jsx). It does **not** capture video or canvas frames. Instead it records Quickdraw’s **document diffs** (the same format used for sync and undo) and plays them back on a timer.
 
+For **authoring** lessons without writing diffs by hand, see [`LESSON_DSL.md`](./LESSON_DSL.md) (Educational DSL → transaction compiler).
+
 ## Mental model
 
 Every edit on the board (a stroke point, a shape resize, a delete, etc.) goes through the `Store` as a transaction. After each transaction the store emits a JSON-safe **diff**:
@@ -50,8 +52,8 @@ Left **Transactions** sidebar:
 | --- | --- |
 | Event list | Grows live while recording (`#n`, `t` ms, `+added ~updated -removed` summary) |
 | Selection | Click a row to inspect its diff |
-| Import | Paste full tape `{ baseline, events }` or bare `[{ t, diff }, …]` → **Load** / **Load & Play** |
-| Upload JSON | Same formats from a `.json` file |
+| Import | Paste **lesson DSL** (`{ actions }`) or tape `{ baseline, events }` / `[{ t, diff }]` → **Load** / **Load & Play**. DSL is compiled automatically. |
+| Upload JSON | Same formats from a `.json` file (try `scripts/transaction/tree.lesson.json`) |
 | Export | Copy current tape to clipboard (and show it in the import box) |
 | Edit panel | After **Stop**: change `t` and/or the diff JSON → **Apply & Play** (saves and immediately replays) |
 | Delete | Remove the selected transaction from the tape |

@@ -1,0 +1,119 @@
+{
+  "scene": "tree",
+  "canvas": { "width": 1000, "height": 700 },
+  "actions": [
+    {
+      "at": 0,
+      "action": "create",
+      "id": "trunk",
+      "type": "geo",
+      "geo": "rectangle",
+      "position": { "x": 500, "y": 380 },
+      "color": "orange",
+      "w": 1,
+      "h": 1,
+      "fill": "solid",
+      "dash": "solid",
+      "growFrom": false
+    },
+    {
+      "at": 200,
+      "action": "resize",
+      "id": "trunk",
+      "w": 40,
+      "h": 160
+    },
+    {
+      "at": 500,
+      "action": "create",
+      "id": "left_branch",
+      "type": "line",
+      "from": "trunk",
+      "direction": "top-left",
+      "length": 110,
+      "bend": 20,
+      "color": "orange",
+      "dash": "solid"
+    },
+    {
+      "at": 900,
+      "action": "create",
+      "id": "right_branch",
+      "type": "line",
+      "from": "trunk",
+      "direction": "top-right",
+      "length": 110,
+      "bend": -20,
+      "color": "orange",
+      "dash": "solid"
+    },
+    {
+      "at": 1300,
+      "action": "create",
+      "id": "crown_left",
+      "type": "geo",
+      "geo": "ellipse",
+      "position": { "relativeTo": "trunk", "direction": "top-left", "distance": "medium" },
+      "color": "green",
+      "w": 1,
+      "h": 1,
+      "fill": "solid",
+      "growFrom": false
+    },
+    {
+      "at": 1500,
+      "action": "resize",
+      "id": "crown_left",
+      "w": 140,
+      "h": 120
+    },
+    {
+      "at": 1700,
+      "action": "create",
+      "id": "crown_center",
+      "type": "geo",
+      "geo": "ellipse",
+      "position": { "relativeTo": "trunk", "direction": "top", "distance": "medium" },
+      "color": "light-green",
+      "w": 1,
+      "h": 1,
+      "fill": "solid",
+      "growFrom": false
+    },
+    {
+      "at": 1900,
+      "action": "resize",
+      "id": "crown_center",
+      "w": 160,
+      "h": 140
+    },
+    {
+      "at": 2100,
+      "action": "create",
+      "id": "crown_right",
+      "type": "geo",
+      "geo": "ellipse",
+      "position": { "relativeTo": "trunk", "direction": "top-right", "distance": "medium" },
+      "color": "green",
+      "w": 1,
+      "h": 1,
+      "fill": "solid",
+      "growFrom": false
+    },
+    {
+      "at": 2300,
+      "action": "resize",
+      "id": "crown_right",
+      "w": 140,
+      "h": 120
+    },
+    {
+      "at": 2500,
+      "action": "label",
+      "id": "trunk",
+      "content": "Trunk",
+      "color": "black",
+      "position": { "relativeTo": "trunk", "direction": "bottom", "distance": "near" }
+    }
+  ]
+}
